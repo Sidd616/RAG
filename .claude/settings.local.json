@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(touch __test_untracked__.py)",
+      "Bash(git check-ignore *)",
+      "Bash(rm __test_untracked__.py)",
+      "Bash(git fetch *)",
+      "Bash(git status *)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(git ls-tree *)",
+      "Bash(git push *)",
+      "Bash(grep -i \"^\\\\.env$\")",
+      "Bash(iconv -f UTF-16LE -t UTF-8 .gitignore)",
+      "Bash(git rm *)"
+    ]
+  }
+}

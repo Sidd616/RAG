@@ -7,6 +7,7 @@ if __name__ == "__main__":
     from chunking import split_documents
     from embeddings import get_embeddings
     from vector_store import create_vector_store, load_vector_store
+    import config
 
     pdf_path = "sample.pdf"
 
@@ -19,13 +20,14 @@ if __name__ == "__main__":
     # Split into chunks
     chunks = split_documents(docs)
 
-    # Create embeddings (default provider: openai)
-    embeddings = get_embeddings("huggingface")
+    # Create embeddings (must match whatever produced the persisted store)
+    embeddings = get_embeddings(config.EMBEDDINGS_PROVIDER)
 
-    # Try loading an existing vector store; if not present, create one
-    try:
-        vectorstore = load_vector_store(embeddings)
-    except Exception:
+    # Load the persisted store; Chroma creates an empty one if none exists
+    # yet, so check the actual document count rather than relying on an
+    # exception to decide whether ingestion is needed.
+    vectorstore = load_vector_store(embeddings)
+    if vectorstore._collection.count() == 0:
         vectorstore = create_vector_store(chunks, embeddings)
 
     # Run a similarity search example

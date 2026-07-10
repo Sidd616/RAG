@@ -1,5 +1,4 @@
 from langchain_classic.retrievers.multi_query import MultiQueryRetriever
-#from langchain_openai import ChatOpenAI
 
 
 def get_base_retriever(vectorstore, k: int = 5):

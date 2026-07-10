@@ -1,7 +1,7 @@
 from langchain_classic.chains import RetrievalQA
 from langchain_classic.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
-import os
+import config
 
 def get_rag_chain(retriever):
     """
@@ -10,9 +10,9 @@ def get_rag_chain(retriever):
     """
 
     llm = ChatOpenAI(
-        model="openai/gpt-oss-20b:free",  
+        model="openai/gpt-oss-20b:free",
         temperature=0.7,
-        openai_api_key=os.getenv("OPENROUTER_API_KEY"),  
+        openai_api_key=config.get_openrouter_api_key(),
         openai_api_base="https://openrouter.ai/api/v1"
     )
 
