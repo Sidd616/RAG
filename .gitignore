@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Local tool settings
+.claude/
+
+# Runtime data (vector store, uploads)
+data/
+uploaded_files/
